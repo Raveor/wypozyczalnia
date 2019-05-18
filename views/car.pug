@@ -1,0 +1,17 @@
+﻿extends layout
+block scripts
+  script(src='/javascripts/common.js')
+
+block content
+      div.bg-white.rounded.shadow-sm.pt-3.padd
+        h1 #{data[0].name} 
+        div
+          span
+            b Cost per day: 
+            | #{item.cost_per_day}
+        div#forms
+          form#delete_form(method='post' action='/book/delete/'+ data[0].book_id)
+            input#delete.btn.btn-primary(type='submit' value='Delete book')
+          form(method='get' action='/book/edit/'+ data[0].book_id)
+            input.btn.btn-primary(type='submit' value='Edit book')
+        

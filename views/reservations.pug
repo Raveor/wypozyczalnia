@@ -1,0 +1,10 @@
+﻿extends layout
+
+block content
+    div.my-3.p-3.bg-white.rounded.shadow-sm
+        each item in data
+          div.media.text-muted.pt-3
+            div.media-body.pb-3.mb-0.lh-125.border-bottom.border-gray.col-sm-11 #{item.name} #{item.cost_per_day}
+            div.col-sm-1
+                a.btn.btn-primary(href='/car/'+ item.car_id, role='button') Edit
+                a.btn.btn-primary(href='/car/'+ item.car_id, role='button') Cancel

@@ -12,6 +12,8 @@ var session = require('express-session');
 
 var routes = require('./routes/index');
 var auth = require('./routes/auth');
+var car = require('./routes/car');
+var reservations = require('./routes/reservations');
 
 var app = express();
 
@@ -42,6 +44,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/auth', auth);
+app.use('/car', car);
+app.use('/reservations', reservartions);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

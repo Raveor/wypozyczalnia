@@ -33,12 +33,16 @@
   <ItemGroup>
     <Compile Include="app.js" />
     <Compile Include="routes\auth.js" />
+    <Compile Include="routes\car.js" />
+    <Compile Include="routes\reservations.js" />
     <Compile Include="routes\index.js" />
     <Content Include="package.json" />
     <Content Include="project_cars.sql" />
     <Content Include="public\images\auto.jpg" />
     <Content Include="public\stylesheets\main.css" />
     <Content Include="README.md" />
+    <Content Include="views\car.pug" />
+    <Content Include="views\reservations.pug" />
     <Content Include="views\index.pug" />
     <Content Include="views\layout.pug" />
     <Content Include="views\error.pug" />
