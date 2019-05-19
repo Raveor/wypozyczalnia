@@ -19,10 +19,26 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Baza danych: `project_cars`
+-- Baza danych: `project_cars3`
 --
-CREATE DATABASE IF NOT EXISTS `project_cars` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
-USE `project_cars`;
+CREATE DATABASE IF NOT EXISTS `project_cars3` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+USE `project_cars3`;
+
+--
+-- Struktura tabeli dla tabeli `t_reservations`
+--
+
+DROP TABLE IF EXISTS `t_reservations`;
+CREATE TABLE IF NOT EXISTS `t_reservations` (
+  `reservation_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `car_id` int(10) UNSIGNED NOT NULL,
+  `date_from` date NOT NULL,
+  `date_to` date NOT NULL,
+  PRIMARY KEY (`reservation_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
 
 -- --------------------------------------------------------
 
@@ -37,21 +53,6 @@ CREATE TABLE IF NOT EXISTS `t_cars` (
   `img` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `cost_per_day` int(11) NOT NULL,
   PRIMARY KEY (`car_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- --------------------------------------------------------
-
---
--- Struktura tabeli dla tabeli `t_reservations`
---
-
-DROP TABLE IF EXISTS `t_reservations`;
-CREATE TABLE IF NOT EXISTS `t_reservations` (
-  `user_id` int(10) UNSIGNED NOT NULL,
-  `car_id` int(10) UNSIGNED NOT NULL,
-  `date_from` date NOT NULL,
-  `date_to` date NOT NULL,
-  PRIMARY KEY (`user_id`,`car_id`,`date_from`,`date_to`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------

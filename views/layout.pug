@@ -7,12 +7,9 @@ html(lang='en')
     link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css', integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS", crossorigin="anonymous")
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
-    link(rel='stylesheet', href='datepicker.min.css')
     link(rel='stylesheet', href='/stylesheets/main.css')
-
+    block scripts
   body
-      script(src='datepicker.min.js')
-      block scripts
     .container-fluid
       .row.content  
         .col-sm-3.sidenav
@@ -24,9 +21,10 @@ html(lang='en')
           ul.navbar-nav
               li.nav-item
                 a.nav-link(href='/') Main Page  
-              li.nav-item
-                a.nav-link(href='/reservations') List of reservation
+              if session.passport !== undefined && session.passport.user !== undefined
+                li.nav-item
+                  a.nav-link(href='/reservations') List of reservation
         .col-sm-9
           block content
     footer.container-fluid
-      p Footer Text
+      p by Maciej Książkiewicz

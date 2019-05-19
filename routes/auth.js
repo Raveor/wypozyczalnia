@@ -7,7 +7,7 @@ var db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'project_cars'
+    database: 'project_cars3'
 });
 
 passport.use(new FacebookStrategy({
@@ -27,7 +27,7 @@ passport.serializeUser(function (user, done) {
 });
 
 passport.deserializeUser(function (user, done) {
-    let query = "SELECT user_id FROM t_users where fb_user_id = " + user.fbUserID;
+    let query = "SELECT user_id, admin_flag FROM t_users where fb_user_id = " + user.fbUserID;
     console.log(query);
     db.query(query, function (err, data) {
         if (err) throw err;
@@ -36,12 +36,12 @@ passport.deserializeUser(function (user, done) {
             db.query(query, function (err, data) {
                 if (err) throw err;
                 else {
-                    let query = "SELECT user_id FROM t_users where fb_user_id = " + user.fbUserID;
+                    let query = "SELECT user_id, admin_flag FROM t_users where fb_user_id = " + user.fbUserID;
                     db.query(query, function (err, data) {
                         if (err) throw err;
                         else {
-                            console.log(data);
                             user.dbUserID = data[0].user_id;
+                            user.admin = data[0].admin_flag;
                             done(null, user);
                         }
                     });
@@ -49,6 +49,7 @@ passport.deserializeUser(function (user, done) {
             });
         } else {
             user.dbUserID = data[0].user_id;
+            user.admin = data[0].admin_flag;
             done(null, user);
         }
     }); 

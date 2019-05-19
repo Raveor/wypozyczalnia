@@ -5,13 +5,18 @@ block scripts
 block content
       div.bg-white.rounded.shadow-sm.pt-3.padd
         h1 #{data[0].name} 
+        img(src='/images/'+data[0].img)
         div
           span
             b Cost per day: 
-            | #{item.cost_per_day}
-        div#forms
-          form#delete_form(method='post' action='/book/delete/'+ data[0].book_id)
-            input#delete.btn.btn-primary(type='submit' value='Delete book')
-          form(method='get' action='/book/edit/'+ data[0].book_id)
-            input.btn.btn-primary(type='submit' value='Edit book')
-        
+            | #{data[0].cost_per_day}
+
+        if session.passport !== undefined && session.passport.user !== undefined
+          form#reserve_form(method='post' action='/car/' + data[0].car_id +'/reserve')
+            input#date_from(type='date' name='date_from' placeholder='Date from')  
+            input#date_to(type='date' name='date_to' placeholder='Date to') 
+            input#check.btn.btn-primary(type='button' value='Check availability')
+            input#reserve.btn.btn-primary(type='submit' value='Reserve')
+            div#reserveComment Car is not avalaible in that time - please choose another.
+        else
+          p Please log in to check availability

@@ -6,7 +6,7 @@ var db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'project_cars'
+    database: 'project_cars3'
 });
 
 /* GET home page. */

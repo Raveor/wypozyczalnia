@@ -1,10 +1,28 @@
 ﻿extends layout
+block scripts
+    script(src='javascripts/common.js')
 
 block content
     div.my-3.p-3.bg-white.rounded.shadow-sm
-        each item in data
-          div.media.text-muted.pt-3
-            div.media-body.pb-3.mb-0.lh-125.border-bottom.border-gray.col-sm-11 #{item.name} #{item.cost_per_day}
-            div.col-sm-1
-                a.btn.btn-primary(href='/car/'+ item.car_id, role='button') Edit
-                a.btn.btn-primary(href='/car/'+ item.car_id, role='button') Cancel
+        if unauthorized == true
+            p Unauthorized entry, please log in.
+        else
+            p My reservations
+            each item in myData
+              div.media.text-muted.pt-3
+                div.media-body.pb-3.mb-0.lh-125.border-bottom.border-gray.col-sm-11 #{item.name} #{item.date_from} - #{item.date_to}
+                div.col-sm-1
+                div#forms
+                    a.btn.btn-primary(href='/reservations/'+ item.reservation_id, role='button') Edit
+                    form#cancel_form(method='get' action='/reservations/'+ item.reservation_id + '/cancel')
+                        input.cancel.btn.btn-primary(type='submit' value='Cancel')
+            if allData !== undefined
+              p All reservations (PA)
+              each item in allData
+                div.media.text-muted.pt-3
+                  div.media-body.pb-3.mb-0.lh-125.border-bottom.border-gray.col-sm-11 #{item.name} #{item.date_from} - #{item.date_to}
+                  div.col-sm-1
+                  div#forms
+                    a.btn.btn-primary(href='/reservations/'+ item.reservation_id, role='button') Edit
+                    form#cancel_form(method='get' action='/reservations/'+ item.reservation_id + '/cancel')
+                        input.cancel.btn.btn-primary(type='submit' value='Cancel')
